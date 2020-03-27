@@ -22,7 +22,7 @@ namespace SuperMarket.Database
         }
         public List<Models.tb_produto> FiltrarPorNome(string nome)
         {
-            List<Models.tb_produto> lista = db.tb_produto.Where(t => t.nm_produto == nome)
+            List<Models.tb_produto> lista = db.tb_produto.Where(t => t.nm_produto.Contains(nome))
                                                          .OrderBy(t => t.nm_produto)
                                                          .ToList();
             return lista;

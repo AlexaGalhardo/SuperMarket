@@ -8,5 +8,17 @@ namespace SuperMarket.Database
 {
     class CompraProdutoItemDatabase
     {
+        Models.supermarket_dbEntities db = new Models.supermarket_dbEntities();
+
+        public void Insert (Models.tb_compra_has_tb_produto item)
+        {
+            db.tb_compra_has_tb_produto.Add(item);
+            db.SaveChanges(); 
+        }
+        public List<Models.tb_compra_has_tb_produto> ListarTodos()
+        {
+            List<Models.tb_compra_has_tb_produto> lista = db.tb_compra_has_tb_produto.ToList();
+            return lista;
+        }
     }
 }

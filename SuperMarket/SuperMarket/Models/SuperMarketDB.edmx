@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="supermarket_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="supermarket_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tb_cliente">
           <Key>
             <PropertyRef Name="idtb_cliente" />
@@ -24,14 +24,14 @@
             <PropertyRef Name="idtb_compra" />
           </Key>
           <Property Name="idtb_compra" Type="int" Nullable="false" />
-          <Property Name="vl_desconto" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="vl_frete" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="vl_total" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="vl_desconto" Type="double" Nullable="false" />
+          <Property Name="vl_frete" Type="double" Nullable="false" />
+          <Property Name="vl_total" Type="double" Nullable="false" />
           <Property Name="nm_endereco" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="nm_cidade" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="nm_estado" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="ds_cep" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="ds_numero" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ds_numero" Type="int" Nullable="false" />
           <Property Name="ds_formapagamento" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="tb_cliente_idtb_cliente" Type="int" Nullable="false" />
         </EntityType>
@@ -64,7 +64,7 @@
           <Property Name="dt_validade" Type="date" Nullable="false" />
           <Property Name="dt_fabricacao" Type="date" Nullable="false" />
           <Property Name="ds_origem" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="vl_venda" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="vl_venda" Type="double" Nullable="false" />
         </EntityType>
         <Association Name="fk_tb_cliente_tb_enderecocliente1">
           <End Role="tb_enderecocliente" Type="Self.tb_enderecocliente" Multiplicity="1" />
@@ -124,8 +124,7 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
             <End Role="tb_compra_has_tb_produto" EntitySet="tb_compra_has_tb_produto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="supermarket_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
