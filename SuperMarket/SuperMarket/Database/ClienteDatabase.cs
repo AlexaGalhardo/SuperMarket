@@ -8,7 +8,7 @@ namespace SuperMarket.Database
 {
     class ClienteDatabase
     {
-        Models.supermarket_dbEntities db = new Models.supermarket_dbEntities();
+        Models.supermarket_dbEntities1 db = new Models.supermarket_dbEntities1();
 
         public void Insert(Models.tb_cliente cliente)
         {
@@ -30,6 +30,12 @@ namespace SuperMarket.Database
             List<Models.tb_cliente> lista = db.tb_cliente.Where(t => t.nm_cliente.Contains(nome))
                                                         .OrderBy(t => t.nm_cliente)
                                                         .ToList();
+            return lista;
+        }
+        public List<Models.tb_cliente> FiltrarPorIdade(string idade)
+        {
+            List<Models.tb_cliente> lista = db.tb_cliente.Where(t => t.ds_idade.Contains(idade))
+                                                         .ToList();
             return lista;
         }
         public void Alterar(Models.tb_cliente cliente)

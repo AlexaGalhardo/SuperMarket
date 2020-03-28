@@ -13,10 +13,10 @@ namespace SuperMarket.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class supermarket_dbEntities : DbContext
+    public partial class supermarket_dbEntities1 : DbContext
     {
-        public supermarket_dbEntities()
-            : base("name=supermarket_dbEntities")
+        public supermarket_dbEntities1()
+            : base("name=supermarket_dbEntities1")
         {
         }
     

@@ -21,14 +21,14 @@ namespace SuperMarket.Models
         }
     
         public int idtb_compra { get; set; }
-        public string vl_desconto { get; set; }
-        public string vl_frete { get; set; }
-        public string vl_total { get; set; }
+        public double vl_desconto { get; set; }
+        public double vl_frete { get; set; }
+        public double vl_total { get; set; }
         public string nm_endereco { get; set; }
         public string nm_cidade { get; set; }
         public string nm_estado { get; set; }
         public string ds_cep { get; set; }
-        public string ds_numero { get; set; }
+        public int ds_numero { get; set; }
         public string ds_formapagamento { get; set; }
         public int tb_cliente_idtb_cliente { get; set; }
     

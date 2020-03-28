@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Alexa Galhardo\Source\Repos\the-star-geeks\SuperMarket\SuperMarket\SuperMarket\Models\SuperMarketDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Alexa Galhardo\Source\Repos\the-star-geeks\SuperMarket\SuperMarket\SuperMarket\Models\SuperMarketdb.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

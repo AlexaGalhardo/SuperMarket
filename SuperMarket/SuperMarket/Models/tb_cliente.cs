@@ -22,6 +22,9 @@ namespace SuperMarket.Models
         public string ds_sexo { get; set; }
         public string ds_idade { get; set; }
         public int tb_enderecocliente_idtb_enderecocliente { get; set; }
+        public string ds_telefone { get; set; }
+        public string ds_celular { get; set; }
+        public string ds_observacao { get; set; }
     
         public virtual tb_enderecocliente tb_enderecocliente { get; set; }
     }

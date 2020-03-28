@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="supermarket_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="supermarket_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tb_cliente">
           <Key>
             <PropertyRef Name="idtb_cliente" />
@@ -18,6 +18,9 @@
           <Property Name="ds_sexo" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="ds_idade" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="tb_enderecocliente_idtb_enderecocliente" Type="int" Nullable="false" />
+          <Property Name="ds_telefone" Type="varchar" MaxLength="45" />
+          <Property Name="ds_celular" Type="varchar" MaxLength="45" />
+          <Property Name="ds_observacao" Type="varchar" MaxLength="45" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_compra">
           <Key>
@@ -124,7 +127,8 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
             <End Role="tb_compra_has_tb_produto" EntitySet="tb_compra_has_tb_produto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="supermarket_dbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -141,6 +145,9 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
           <Property Name="ds_sexo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ds_idade" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tb_enderecocliente_idtb_enderecocliente" Type="Int32" Nullable="false" />
+          <Property Name="ds_telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ds_celular" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="ds_observacao" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tb_enderecocliente" Relationship="Self.fk_tb_cliente_tb_enderecocliente1" FromRole="tb_cliente" ToRole="tb_enderecocliente" />
         </EntityType>
         <EntityType Name="tb_compra">
@@ -148,14 +155,14 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
             <PropertyRef Name="idtb_compra" />
           </Key>
           <Property Name="idtb_compra" Type="Int32" Nullable="false" />
-          <Property Name="vl_desconto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="vl_frete" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="vl_total" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vl_desconto" Type="Double" Nullable="false" />
+          <Property Name="vl_frete" Type="Double" Nullable="false" />
+          <Property Name="vl_total" Type="Double" Nullable="false" />
           <Property Name="nm_endereco" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nm_cidade" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nm_estado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ds_cep" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ds_numero" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ds_numero" Type="Int32" Nullable="false" />
           <Property Name="ds_formapagamento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tb_cliente_idtb_cliente" Type="Int32" Nullable="false" />
           <NavigationProperty Name="tb_compra_has_tb_produto" Relationship="Self.fk_tb_compra_has_tb_produto_tb_compra" FromRole="tb_compra" ToRole="tb_compra_has_tb_produto" />
@@ -192,7 +199,7 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
           <Property Name="dt_validade" Type="DateTime" Nullable="false" />
           <Property Name="dt_fabricacao" Type="DateTime" Nullable="false" />
           <Property Name="ds_origem" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="vl_venda" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="vl_venda" Type="Double" Nullable="false" />
           <NavigationProperty Name="tb_compra_has_tb_produto" Relationship="Self.fk_tb_compra_has_tb_produto_tb_produto1" FromRole="tb_produto" ToRole="tb_compra_has_tb_produto" />
         </EntityType>
         <Association Name="fk_tb_cliente_tb_enderecocliente1">
@@ -231,7 +238,7 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="supermarket_dbEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="supermarket_dbEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tb_cliente" EntityType="Self.tb_cliente" />
           <EntitySet Name="tb_compra" EntityType="Self.tb_compra" />
           <EntitySet Name="tb_compra_has_tb_produto" EntityType="Self.tb_compra_has_tb_produto" />
@@ -255,7 +262,7 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="supermarket_dbModelStoreContainer" CdmEntityContainer="supermarket_dbEntities">
+        <EntityContainerMapping StorageEntityContainer="supermarket_dbModelStoreContainer" CdmEntityContainer="supermarket_dbEntities1">
           <EntitySetMapping Name="tb_cliente">
             <EntityTypeMapping TypeName="supermarket_dbModel.tb_cliente">
               <MappingFragment StoreEntitySet="tb_cliente">
@@ -267,6 +274,9 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
                 <ScalarProperty Name="ds_sexo" ColumnName="ds_sexo" />
                 <ScalarProperty Name="ds_idade" ColumnName="ds_idade" />
                 <ScalarProperty Name="tb_enderecocliente_idtb_enderecocliente" ColumnName="tb_enderecocliente_idtb_enderecocliente" />
+                <ScalarProperty Name="ds_telefone" ColumnName="ds_telefone" />
+                <ScalarProperty Name="ds_celular" ColumnName="ds_celular" />
+                <ScalarProperty Name="ds_observacao" ColumnName="ds_observacao" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
