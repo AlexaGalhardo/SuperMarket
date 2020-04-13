@@ -25,13 +25,13 @@ namespace SuperMarket.Models
         public double vl_frete { get; set; }
         public double vl_total { get; set; }
         public string nm_endereco { get; set; }
-        public string nm_cidade { get; set; }
         public string nm_estado { get; set; }
         public string ds_cep { get; set; }
         public int ds_numero { get; set; }
         public string ds_formapagamento { get; set; }
         public int tb_cliente_idtb_cliente { get; set; }
     
+        public virtual tb_cliente tb_cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_compra_has_tb_produto> tb_compra_has_tb_produto { get; set; }
     }

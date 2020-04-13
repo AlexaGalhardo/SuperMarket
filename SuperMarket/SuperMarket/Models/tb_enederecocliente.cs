@@ -12,22 +12,17 @@ namespace SuperMarket.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tb_enderecocliente
+    public partial class tb_enederecocliente
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tb_enderecocliente()
-        {
-            this.tb_cliente = new HashSet<tb_cliente>();
-        }
-    
         public int idtb_enderecocliente { get; set; }
         public string nm_endereco { get; set; }
+        public string ds_cep { get; set; }
         public string nm_cidade { get; set; }
         public string nm_estado { get; set; }
-        public string ds_cep { get; set; }
         public int ds_numero { get; set; }
+        public string nm_bairro { get; set; }
+        public int tb_cliente_idtb_cliente { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<tb_cliente> tb_cliente { get; set; }
+        public virtual tb_cliente tb_cliente { get; set; }
     }
 }

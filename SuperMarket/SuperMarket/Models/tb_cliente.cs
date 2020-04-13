@@ -14,18 +14,24 @@ namespace SuperMarket.Models
     
     public partial class tb_cliente
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tb_cliente()
+        {
+            this.tb_compra = new HashSet<tb_compra>();
+            this.tb_enederecocliente = new HashSet<tb_enederecocliente>();
+        }
+    
         public int idtb_cliente { get; set; }
         public string nm_cliente { get; set; }
         public string ds_cpf_cnpj { get; set; }
-        public string ds_tipopessoa { get; set; }
-        public string dt_cadastro { get; set; }
+        public int ds_idade { get; set; }
         public string ds_sexo { get; set; }
-        public string ds_idade { get; set; }
-        public int tb_enderecocliente_idtb_enderecocliente { get; set; }
-        public string ds_telefone { get; set; }
-        public string ds_celular { get; set; }
-        public string ds_observacao { get; set; }
+        public string ds_tipo_pessoa { get; set; }
+        public System.DateTime dt_cadastro { get; set; }
     
-        public virtual tb_enderecocliente tb_enderecocliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_compra> tb_compra { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_enederecocliente> tb_enederecocliente { get; set; }
     }
 }

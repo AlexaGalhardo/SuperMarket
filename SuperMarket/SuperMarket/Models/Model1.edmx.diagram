@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ee613c82874b4c5b82f39416ca500786" Name="Diagram1">
+        <EntityTypeShape EntityType="supermarket_dbModel.tb_cliente" Width="1.5" PointX="0.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarket_dbModel.tb_compra" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarket_dbModel.tb_enederecocliente" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarket_dbModel.tb_produto" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="supermarket_dbModel.tb_compra_has_tb_produto" Width="1.5" PointX="5.25" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="supermarket_dbModel.fk_tb_compra_tb_cliente1" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarket_dbModel.fk_tb_enederecocliente_tb_cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarket_dbModel.fk_tb_compra_has_tb_produto_tb_compra1" ManuallyRouted="false" />
+        <AssociationConnector Association="supermarket_dbModel.fk_tb_compra_has_tb_produto_tb_produto1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

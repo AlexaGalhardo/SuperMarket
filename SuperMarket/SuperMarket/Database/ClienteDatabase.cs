@@ -8,16 +8,16 @@ namespace SuperMarket.Database
 {
     class ClienteDatabase
     {
-        Models.supermarket_dbEntities1 db = new Models.supermarket_dbEntities1();
+        Models.supermarket_dbEntities2 db = new Models.supermarket_dbEntities2();
 
         public void Insert(Models.tb_cliente cliente)
         {
             db.tb_cliente.Add(cliente);
             db.SaveChanges();
         }
-        public void InsertEndereco(Models.tb_enderecocliente endereco)
+        public void InsertEndereco(Models.tb_enederecocliente endereco)
         {
-            db.tb_enderecocliente.Add(endereco);
+            db.tb_enederecocliente.Add(endereco);
             db.SaveChanges();
         }
         public List<Models.tb_cliente> ListarTodos()
@@ -32,9 +32,9 @@ namespace SuperMarket.Database
                                                         .ToList();
             return lista;
         }
-        public List<Models.tb_cliente> FiltrarPorIdade(string idade)
+        public List<Models.tb_cliente> FiltrarPorIdade(int idade)
         {
-            List<Models.tb_cliente> lista = db.tb_cliente.Where(t => t.ds_idade.Contains(idade))
+            List<Models.tb_cliente> lista = db.tb_cliente.Where(t => t.ds_idade == idade)
                                                          .ToList();
             return lista;
         }
@@ -47,15 +47,15 @@ namespace SuperMarket.Database
                 alterar.ds_cpf_cnpj = cliente.ds_cpf_cnpj;
                 alterar.ds_idade = cliente.ds_idade;
                 alterar.ds_sexo = cliente.ds_sexo;
-                alterar.ds_tipopessoa = cliente.ds_tipopessoa;
+                //alterar.ds_tipopessoa = cliente.ds_tipopessoa;
                 alterar.dt_cadastro = cliente.dt_cadastro;
                 alterar.nm_cliente = cliente.nm_cliente;
             }
             db.SaveChanges();
         }
-        public void AlterarEndereco(Models.tb_enderecocliente endereco)
+        public void AlterarEndereco(Models.tb_enederecocliente endereco)
         {
-            Models.tb_enderecocliente alterar = db.tb_enderecocliente.FirstOrDefault
+            Models.tb_enederecocliente alterar = db.tb_enederecocliente.FirstOrDefault
                 (t => t.idtb_enderecocliente == endereco.idtb_enderecocliente);
             if (alterar != null)
             {
@@ -76,9 +76,9 @@ namespace SuperMarket.Database
         }
         public void RemoverEndereco(int id)
         {
-            Models.tb_enderecocliente remover = db.tb_enderecocliente.First
+            Models.tb_enederecocliente remover = db.tb_enederecocliente.First
                 (t => t.idtb_enderecocliente == id);
-            db.tb_enderecocliente.Remove(remover);
+            db.tb_enederecocliente.Remove(remover);
             db.SaveChanges();
         }
     }

@@ -17,6 +17,12 @@ namespace SuperMarket.UI.Produto
             InitializeComponent();
         }
 
-        
+        private void btnCadastrar_Click(object sender, EventArgs e)
+        {
+            Models.tb_produto produto = new Models.tb_produto();
+
+           
+        }
+        public void Alterar
     }
 }

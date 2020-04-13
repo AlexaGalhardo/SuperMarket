@@ -8,7 +8,7 @@ namespace SuperMarket.Database
 {
     class ProdutoDatabase
     {
-        Models.supermarket_dbEntities1 db = new Models.supermarket_dbEntities1();
+        Models.supermarket_dbEntities2 db = new Models.supermarket_dbEntities2();
 
         public void Insert (Models.tb_produto produto)
         {

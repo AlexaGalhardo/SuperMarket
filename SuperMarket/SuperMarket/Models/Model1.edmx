@@ -4,23 +4,18 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="supermarket_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="supermarket_dbModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tb_cliente">
           <Key>
             <PropertyRef Name="idtb_cliente" />
-            <PropertyRef Name="tb_enderecocliente_idtb_enderecocliente" />
           </Key>
           <Property Name="idtb_cliente" Type="int" Nullable="false" />
-          <Property Name="nm_cliente" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="ds_cpf/cnpj" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="ds_tipopessoa" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="dt_cadastro" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="nm_cliente" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ds-cpf_cnpj" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ds_idade" Type="int" Nullable="false" />
           <Property Name="ds_sexo" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="ds_idade" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="tb_enderecocliente_idtb_enderecocliente" Type="int" Nullable="false" />
-          <Property Name="ds_telefone" Type="varchar" MaxLength="45" />
-          <Property Name="ds_celular" Type="varchar" MaxLength="45" />
-          <Property Name="ds_observacao" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="ds_tipo_pessoa" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="dt_cadastro" Type="datetime" Precision="0" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_compra">
           <Key>
@@ -30,33 +25,37 @@
           <Property Name="vl_desconto" Type="double" Nullable="false" />
           <Property Name="vl_frete" Type="double" Nullable="false" />
           <Property Name="vl_total" Type="double" Nullable="false" />
-          <Property Name="nm_endereco" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="nm_cidade" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="nm_estado" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="nm_endereco" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="nm_estado" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ds_cep" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="ds_numero" Type="int" Nullable="false" />
           <Property Name="ds_formapagamento" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="tb_cliente_idtb_cliente" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'def.supermarket_db.tb_compra_has_tb_produto' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="tb_compra_has_tb_produto">
           <Key>
             <PropertyRef Name="tb_compra_idtb_compra" />
             <PropertyRef Name="tb_produto_idtb_produto" />
+            <PropertyRef Name="ds_quantidade" />
           </Key>
           <Property Name="tb_compra_idtb_compra" Type="int" Nullable="false" />
           <Property Name="tb_produto_idtb_produto" Type="int" Nullable="false" />
           <Property Name="ds_quantidade" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="tb_enderecocliente">
+        <EntityType Name="tb_enederecocliente">
           <Key>
             <PropertyRef Name="idtb_enderecocliente" />
           </Key>
           <Property Name="idtb_enderecocliente" Type="int" Nullable="false" />
           <Property Name="nm_endereco" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="nm_cidade" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="nm_estado" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="ds_cep" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="nm_cidade" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="nm_estado" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="ds_numero" Type="int" Nullable="false" />
+          <Property Name="nm_bairro" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="tb_cliente_idtb_cliente" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_produto">
           <Key>
@@ -64,24 +63,12 @@
           </Key>
           <Property Name="idtb_produto" Type="int" Nullable="false" />
           <Property Name="nm_produto" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="dt_validade" Type="date" Nullable="false" />
-          <Property Name="dt_fabricacao" Type="date" Nullable="false" />
-          <Property Name="ds_origem" Type="varchar" MaxLength="45" Nullable="false" />
           <Property Name="vl_venda" Type="double" Nullable="false" />
+          <Property Name="ds_origem" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="dt_fabricacao" Type="date" Nullable="false" />
+          <Property Name="dt_validade" Type="date" Nullable="false" />
         </EntityType>
-        <Association Name="fk_tb_cliente_tb_enderecocliente1">
-          <End Role="tb_enderecocliente" Type="Self.tb_enderecocliente" Multiplicity="1" />
-          <End Role="tb_cliente" Type="Self.tb_cliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tb_enderecocliente">
-              <PropertyRef Name="idtb_enderecocliente" />
-            </Principal>
-            <Dependent Role="tb_cliente">
-              <PropertyRef Name="tb_enderecocliente_idtb_enderecocliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="fk_tb_compra_has_tb_produto_tb_compra">
+        <Association Name="fk_tb_compra_has_tb_produto_tb_compra1">
           <End Role="tb_compra" Type="Self.tb_compra" Multiplicity="1" />
           <End Role="tb_compra_has_tb_produto" Type="Self.tb_compra_has_tb_produto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -105,26 +92,57 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <!--Errors Found During Generation:
-warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
-        <Association Name="fk_tb_compra_tb_cliente1" />-->
+        <Association Name="fk_tb_compra_tb_cliente1">
+          <End Role="tb_cliente" Type="Self.tb_cliente" Multiplicity="1" />
+          <End Role="tb_compra" Type="Self.tb_compra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cliente">
+              <PropertyRef Name="idtb_cliente" />
+            </Principal>
+            <Dependent Role="tb_compra">
+              <PropertyRef Name="tb_cliente_idtb_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_enederecocliente_tb_cliente">
+          <End Role="tb_cliente" Type="Self.tb_cliente" Multiplicity="1" />
+          <End Role="tb_enederecocliente" Type="Self.tb_enederecocliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cliente">
+              <PropertyRef Name="idtb_cliente" />
+            </Principal>
+            <Dependent Role="tb_enederecocliente">
+              <PropertyRef Name="tb_cliente_idtb_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="supermarket_dbModelStoreContainer">
           <EntitySet Name="tb_cliente" EntityType="Self.tb_cliente" Schema="supermarket_db" store:Type="Tables" />
           <EntitySet Name="tb_compra" EntityType="Self.tb_compra" Schema="supermarket_db" store:Type="Tables" />
-          <EntitySet Name="tb_compra_has_tb_produto" EntityType="Self.tb_compra_has_tb_produto" Schema="supermarket_db" store:Type="Tables" />
-          <EntitySet Name="tb_enderecocliente" EntityType="Self.tb_enderecocliente" Schema="supermarket_db" store:Type="Tables" />
+          <EntitySet Name="tb_enederecocliente" EntityType="Self.tb_enederecocliente" Schema="supermarket_db" store:Type="Tables" />
           <EntitySet Name="tb_produto" EntityType="Self.tb_produto" Schema="supermarket_db" store:Type="Tables" />
-          <AssociationSet Name="fk_tb_cliente_tb_enderecocliente1" Association="Self.fk_tb_cliente_tb_enderecocliente1">
-            <End Role="tb_enderecocliente" EntitySet="tb_enderecocliente" />
-            <End Role="tb_cliente" EntitySet="tb_cliente" />
-          </AssociationSet>
-          <AssociationSet Name="fk_tb_compra_has_tb_produto_tb_compra" Association="Self.fk_tb_compra_has_tb_produto_tb_compra">
+          <EntitySet Name="tb_compra_has_tb_produto" EntityType="Self.tb_compra_has_tb_produto" store:Type="Tables" store:Schema="supermarket_db">
+            <DefiningQuery>SELECT
+`tb_compra_has_tb_produto`.`tb_compra_idtb_compra`, 
+`tb_compra_has_tb_produto`.`tb_produto_idtb_produto`, 
+`tb_compra_has_tb_produto`.`ds_quantidade`
+FROM `tb_compra_has_tb_produto` AS `tb_compra_has_tb_produto`</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_tb_compra_has_tb_produto_tb_compra1" Association="Self.fk_tb_compra_has_tb_produto_tb_compra1">
             <End Role="tb_compra" EntitySet="tb_compra" />
             <End Role="tb_compra_has_tb_produto" EntitySet="tb_compra_has_tb_produto" />
           </AssociationSet>
           <AssociationSet Name="fk_tb_compra_has_tb_produto_tb_produto1" Association="Self.fk_tb_compra_has_tb_produto_tb_produto1">
             <End Role="tb_produto" EntitySet="tb_produto" />
             <End Role="tb_compra_has_tb_produto" EntitySet="tb_compra_has_tb_produto" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_compra_tb_cliente1" Association="Self.fk_tb_compra_tb_cliente1">
+            <End Role="tb_cliente" EntitySet="tb_cliente" />
+            <End Role="tb_compra" EntitySet="tb_compra" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_enederecocliente_tb_cliente" Association="Self.fk_tb_enederecocliente_tb_cliente">
+            <End Role="tb_cliente" EntitySet="tb_cliente" />
+            <End Role="tb_enederecocliente" EntitySet="tb_enederecocliente" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -135,20 +153,16 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
         <EntityType Name="tb_cliente">
           <Key>
             <PropertyRef Name="idtb_cliente" />
-            <PropertyRef Name="tb_enderecocliente_idtb_enderecocliente" />
           </Key>
           <Property Name="idtb_cliente" Type="Int32" Nullable="false" />
-          <Property Name="nm_cliente" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_cliente" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ds_cpf_cnpj" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ds_tipopessoa" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="dt_cadastro" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ds_idade" Type="Int32" Nullable="false" />
           <Property Name="ds_sexo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ds_idade" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="tb_enderecocliente_idtb_enderecocliente" Type="Int32" Nullable="false" />
-          <Property Name="ds_telefone" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="ds_celular" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="ds_observacao" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tb_enderecocliente" Relationship="Self.fk_tb_cliente_tb_enderecocliente1" FromRole="tb_cliente" ToRole="tb_enderecocliente" />
+          <Property Name="ds_tipo_pessoa" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt_cadastro" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="tb_compra" Relationship="Self.fk_tb_compra_tb_cliente1" FromRole="tb_cliente" ToRole="tb_compra" />
+          <NavigationProperty Name="tb_enederecocliente" Relationship="Self.fk_tb_enederecocliente_tb_cliente" FromRole="tb_cliente" ToRole="tb_enederecocliente" />
         </EntityType>
         <EntityType Name="tb_compra">
           <Key>
@@ -158,37 +172,28 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
           <Property Name="vl_desconto" Type="Double" Nullable="false" />
           <Property Name="vl_frete" Type="Double" Nullable="false" />
           <Property Name="vl_total" Type="Double" Nullable="false" />
-          <Property Name="nm_endereco" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nm_cidade" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nm_estado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_endereco" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ds_cep" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ds_numero" Type="Int32" Nullable="false" />
           <Property Name="ds_formapagamento" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tb_cliente_idtb_cliente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tb_compra_has_tb_produto" Relationship="Self.fk_tb_compra_has_tb_produto_tb_compra" FromRole="tb_compra" ToRole="tb_compra_has_tb_produto" />
+          <NavigationProperty Name="tb_cliente" Relationship="Self.fk_tb_compra_tb_cliente1" FromRole="tb_compra" ToRole="tb_cliente" />
+          <NavigationProperty Name="tb_compra_has_tb_produto" Relationship="Self.fk_tb_compra_has_tb_produto_tb_compra1" FromRole="tb_compra" ToRole="tb_compra_has_tb_produto" />
         </EntityType>
-        <EntityType Name="tb_compra_has_tb_produto">
-          <Key>
-            <PropertyRef Name="tb_compra_idtb_compra" />
-            <PropertyRef Name="tb_produto_idtb_produto" />
-          </Key>
-          <Property Name="tb_compra_idtb_compra" Type="Int32" Nullable="false" />
-          <Property Name="tb_produto_idtb_produto" Type="Int32" Nullable="false" />
-          <Property Name="ds_quantidade" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tb_compra" Relationship="Self.fk_tb_compra_has_tb_produto_tb_compra" FromRole="tb_compra_has_tb_produto" ToRole="tb_compra" />
-          <NavigationProperty Name="tb_produto" Relationship="Self.fk_tb_compra_has_tb_produto_tb_produto1" FromRole="tb_compra_has_tb_produto" ToRole="tb_produto" />
-        </EntityType>
-        <EntityType Name="tb_enderecocliente">
+        <EntityType Name="tb_enederecocliente">
           <Key>
             <PropertyRef Name="idtb_enderecocliente" />
           </Key>
           <Property Name="idtb_enderecocliente" Type="Int32" Nullable="false" />
           <Property Name="nm_endereco" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nm_cidade" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="nm_estado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ds_cep" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_cidade" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nm_estado" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ds_numero" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tb_cliente" Relationship="Self.fk_tb_cliente_tb_enderecocliente1" FromRole="tb_enderecocliente" ToRole="tb_cliente" />
+          <Property Name="nm_bairro" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tb_cliente_idtb_cliente" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_cliente" Relationship="Self.fk_tb_enederecocliente_tb_cliente" FromRole="tb_enederecocliente" ToRole="tb_cliente" />
         </EntityType>
         <EntityType Name="tb_produto">
           <Key>
@@ -196,25 +201,49 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
           </Key>
           <Property Name="idtb_produto" Type="Int32" Nullable="false" />
           <Property Name="nm_produto" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="dt_validade" Type="DateTime" Nullable="false" />
-          <Property Name="dt_fabricacao" Type="DateTime" Nullable="false" />
-          <Property Name="ds_origem" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="vl_venda" Type="Double" Nullable="false" />
+          <Property Name="ds_origem" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dt_fabricacao" Type="DateTime" Nullable="false" />
+          <Property Name="dt_validade" Type="DateTime" Nullable="false" />
           <NavigationProperty Name="tb_compra_has_tb_produto" Relationship="Self.fk_tb_compra_has_tb_produto_tb_produto1" FromRole="tb_produto" ToRole="tb_compra_has_tb_produto" />
         </EntityType>
-        <Association Name="fk_tb_cliente_tb_enderecocliente1">
-          <End Role="tb_enderecocliente" Type="Self.tb_enderecocliente" Multiplicity="1" />
-          <End Role="tb_cliente" Type="Self.tb_cliente" Multiplicity="*" />
+        <EntityType Name="tb_compra_has_tb_produto">
+          <Key>
+            <PropertyRef Name="tb_compra_idtb_compra" />
+            <PropertyRef Name="tb_produto_idtb_produto" />
+            <PropertyRef Name="ds_quantidade" />
+          </Key>
+          <Property Name="tb_compra_idtb_compra" Type="Int32" Nullable="false" />
+          <Property Name="tb_produto_idtb_produto" Type="Int32" Nullable="false" />
+          <Property Name="ds_quantidade" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_compra" Relationship="Self.fk_tb_compra_has_tb_produto_tb_compra1" FromRole="tb_compra_has_tb_produto" ToRole="tb_compra" />
+          <NavigationProperty Name="tb_produto" Relationship="Self.fk_tb_compra_has_tb_produto_tb_produto1" FromRole="tb_compra_has_tb_produto" ToRole="tb_produto" />
+        </EntityType>
+        <Association Name="fk_tb_compra_tb_cliente1">
+          <End Role="tb_cliente" Type="Self.tb_cliente" Multiplicity="1" />
+          <End Role="tb_compra" Type="Self.tb_compra" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tb_enderecocliente">
-              <PropertyRef Name="idtb_enderecocliente" />
+            <Principal Role="tb_cliente">
+              <PropertyRef Name="idtb_cliente" />
             </Principal>
-            <Dependent Role="tb_cliente">
-              <PropertyRef Name="tb_enderecocliente_idtb_enderecocliente" />
+            <Dependent Role="tb_compra">
+              <PropertyRef Name="tb_cliente_idtb_cliente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_tb_compra_has_tb_produto_tb_compra">
+        <Association Name="fk_tb_enederecocliente_tb_cliente">
+          <End Role="tb_cliente" Type="Self.tb_cliente" Multiplicity="1" />
+          <End Role="tb_enederecocliente" Type="Self.tb_enederecocliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_cliente">
+              <PropertyRef Name="idtb_cliente" />
+            </Principal>
+            <Dependent Role="tb_enederecocliente">
+              <PropertyRef Name="tb_cliente_idtb_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tb_compra_has_tb_produto_tb_compra1">
           <End Role="tb_compra" Type="Self.tb_compra" Multiplicity="1" />
           <End Role="tb_compra_has_tb_produto" Type="Self.tb_compra_has_tb_produto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -238,17 +267,21 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="supermarket_dbEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="supermarket_dbEntities2" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tb_cliente" EntityType="Self.tb_cliente" />
           <EntitySet Name="tb_compra" EntityType="Self.tb_compra" />
-          <EntitySet Name="tb_compra_has_tb_produto" EntityType="Self.tb_compra_has_tb_produto" />
-          <EntitySet Name="tb_enderecocliente" EntityType="Self.tb_enderecocliente" />
+          <EntitySet Name="tb_enederecocliente" EntityType="Self.tb_enederecocliente" />
           <EntitySet Name="tb_produto" EntityType="Self.tb_produto" />
-          <AssociationSet Name="fk_tb_cliente_tb_enderecocliente1" Association="Self.fk_tb_cliente_tb_enderecocliente1">
-            <End Role="tb_enderecocliente" EntitySet="tb_enderecocliente" />
+          <EntitySet Name="tb_compra_has_tb_produto" EntityType="Self.tb_compra_has_tb_produto" />
+          <AssociationSet Name="fk_tb_compra_tb_cliente1" Association="Self.fk_tb_compra_tb_cliente1">
             <End Role="tb_cliente" EntitySet="tb_cliente" />
+            <End Role="tb_compra" EntitySet="tb_compra" />
           </AssociationSet>
-          <AssociationSet Name="fk_tb_compra_has_tb_produto_tb_compra" Association="Self.fk_tb_compra_has_tb_produto_tb_compra">
+          <AssociationSet Name="fk_tb_enederecocliente_tb_cliente" Association="Self.fk_tb_enederecocliente_tb_cliente">
+            <End Role="tb_cliente" EntitySet="tb_cliente" />
+            <End Role="tb_enederecocliente" EntitySet="tb_enederecocliente" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tb_compra_has_tb_produto_tb_compra1" Association="Self.fk_tb_compra_has_tb_produto_tb_compra1">
             <End Role="tb_compra" EntitySet="tb_compra" />
             <End Role="tb_compra_has_tb_produto" EntitySet="tb_compra_has_tb_produto" />
           </AssociationSet>
@@ -262,21 +295,17 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="supermarket_dbModelStoreContainer" CdmEntityContainer="supermarket_dbEntities1">
+        <EntityContainerMapping StorageEntityContainer="supermarket_dbModelStoreContainer" CdmEntityContainer="supermarket_dbEntities2">
           <EntitySetMapping Name="tb_cliente">
             <EntityTypeMapping TypeName="supermarket_dbModel.tb_cliente">
               <MappingFragment StoreEntitySet="tb_cliente">
                 <ScalarProperty Name="idtb_cliente" ColumnName="idtb_cliente" />
                 <ScalarProperty Name="nm_cliente" ColumnName="nm_cliente" />
-                <ScalarProperty Name="ds_cpf_cnpj" ColumnName="ds_cpf/cnpj" />
-                <ScalarProperty Name="ds_tipopessoa" ColumnName="ds_tipopessoa" />
-                <ScalarProperty Name="dt_cadastro" ColumnName="dt_cadastro" />
-                <ScalarProperty Name="ds_sexo" ColumnName="ds_sexo" />
+                <ScalarProperty Name="ds_cpf_cnpj" ColumnName="ds-cpf_cnpj" />
                 <ScalarProperty Name="ds_idade" ColumnName="ds_idade" />
-                <ScalarProperty Name="tb_enderecocliente_idtb_enderecocliente" ColumnName="tb_enderecocliente_idtb_enderecocliente" />
-                <ScalarProperty Name="ds_telefone" ColumnName="ds_telefone" />
-                <ScalarProperty Name="ds_celular" ColumnName="ds_celular" />
-                <ScalarProperty Name="ds_observacao" ColumnName="ds_observacao" />
+                <ScalarProperty Name="ds_sexo" ColumnName="ds_sexo" />
+                <ScalarProperty Name="ds_tipo_pessoa" ColumnName="ds_tipo_pessoa" />
+                <ScalarProperty Name="dt_cadastro" ColumnName="dt_cadastro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -288,12 +317,37 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
                 <ScalarProperty Name="vl_frete" ColumnName="vl_frete" />
                 <ScalarProperty Name="vl_total" ColumnName="vl_total" />
                 <ScalarProperty Name="nm_endereco" ColumnName="nm_endereco" />
-                <ScalarProperty Name="nm_cidade" ColumnName="nm_cidade" />
                 <ScalarProperty Name="nm_estado" ColumnName="nm_estado" />
                 <ScalarProperty Name="ds_cep" ColumnName="ds_cep" />
                 <ScalarProperty Name="ds_numero" ColumnName="ds_numero" />
                 <ScalarProperty Name="ds_formapagamento" ColumnName="ds_formapagamento" />
                 <ScalarProperty Name="tb_cliente_idtb_cliente" ColumnName="tb_cliente_idtb_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_enederecocliente">
+            <EntityTypeMapping TypeName="supermarket_dbModel.tb_enederecocliente">
+              <MappingFragment StoreEntitySet="tb_enederecocliente">
+                <ScalarProperty Name="idtb_enderecocliente" ColumnName="idtb_enderecocliente" />
+                <ScalarProperty Name="nm_endereco" ColumnName="nm_endereco" />
+                <ScalarProperty Name="ds_cep" ColumnName="ds_cep" />
+                <ScalarProperty Name="nm_cidade" ColumnName="nm_cidade" />
+                <ScalarProperty Name="nm_estado" ColumnName="nm_estado" />
+                <ScalarProperty Name="ds_numero" ColumnName="ds_numero" />
+                <ScalarProperty Name="nm_bairro" ColumnName="nm_bairro" />
+                <ScalarProperty Name="tb_cliente_idtb_cliente" ColumnName="tb_cliente_idtb_cliente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_produto">
+            <EntityTypeMapping TypeName="supermarket_dbModel.tb_produto">
+              <MappingFragment StoreEntitySet="tb_produto">
+                <ScalarProperty Name="idtb_produto" ColumnName="idtb_produto" />
+                <ScalarProperty Name="nm_produto" ColumnName="nm_produto" />
+                <ScalarProperty Name="vl_venda" ColumnName="vl_venda" />
+                <ScalarProperty Name="ds_origem" ColumnName="ds_origem" />
+                <ScalarProperty Name="dt_fabricacao" ColumnName="dt_fabricacao" />
+                <ScalarProperty Name="dt_validade" ColumnName="dt_validade" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -303,30 +357,6 @@ warning 6035: The relationship 'fk_tb_compra_tb_cliente1' has columns that are n
                 <ScalarProperty Name="tb_compra_idtb_compra" ColumnName="tb_compra_idtb_compra" />
                 <ScalarProperty Name="tb_produto_idtb_produto" ColumnName="tb_produto_idtb_produto" />
                 <ScalarProperty Name="ds_quantidade" ColumnName="ds_quantidade" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_enderecocliente">
-            <EntityTypeMapping TypeName="supermarket_dbModel.tb_enderecocliente">
-              <MappingFragment StoreEntitySet="tb_enderecocliente">
-                <ScalarProperty Name="idtb_enderecocliente" ColumnName="idtb_enderecocliente" />
-                <ScalarProperty Name="nm_endereco" ColumnName="nm_endereco" />
-                <ScalarProperty Name="nm_cidade" ColumnName="nm_cidade" />
-                <ScalarProperty Name="nm_estado" ColumnName="nm_estado" />
-                <ScalarProperty Name="ds_cep" ColumnName="ds_cep" />
-                <ScalarProperty Name="ds_numero" ColumnName="ds_numero" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tb_produto">
-            <EntityTypeMapping TypeName="supermarket_dbModel.tb_produto">
-              <MappingFragment StoreEntitySet="tb_produto">
-                <ScalarProperty Name="idtb_produto" ColumnName="idtb_produto" />
-                <ScalarProperty Name="nm_produto" ColumnName="nm_produto" />
-                <ScalarProperty Name="dt_validade" ColumnName="dt_validade" />
-                <ScalarProperty Name="dt_fabricacao" ColumnName="dt_fabricacao" />
-                <ScalarProperty Name="ds_origem" ColumnName="ds_origem" />
-                <ScalarProperty Name="vl_venda" ColumnName="vl_venda" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

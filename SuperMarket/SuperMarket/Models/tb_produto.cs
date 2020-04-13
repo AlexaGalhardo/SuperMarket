@@ -22,10 +22,10 @@ namespace SuperMarket.Models
     
         public int idtb_produto { get; set; }
         public string nm_produto { get; set; }
-        public System.DateTime dt_validade { get; set; }
-        public System.DateTime dt_fabricacao { get; set; }
-        public string ds_origem { get; set; }
         public double vl_venda { get; set; }
+        public string ds_origem { get; set; }
+        public System.DateTime dt_fabricacao { get; set; }
+        public System.DateTime dt_validade { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_compra_has_tb_produto> tb_compra_has_tb_produto { get; set; }
