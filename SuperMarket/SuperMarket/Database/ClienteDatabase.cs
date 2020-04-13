@@ -47,7 +47,7 @@ namespace SuperMarket.Database
                 alterar.ds_cpf_cnpj = cliente.ds_cpf_cnpj;
                 alterar.ds_idade = cliente.ds_idade;
                 alterar.ds_sexo = cliente.ds_sexo;
-                //alterar.ds_tipopessoa = cliente.ds_tipopessoa;
+                alterar.ds_tipo_pessoa = cliente.ds_tipo_pessoa;
                 alterar.dt_cadastro = cliente.dt_cadastro;
                 alterar.nm_cliente = cliente.nm_cliente;
             }

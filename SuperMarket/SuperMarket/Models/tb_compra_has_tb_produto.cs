@@ -16,6 +16,7 @@ namespace SuperMarket.Models
     {
         public int tb_compra_idtb_compra { get; set; }
         public int tb_produto_idtb_produto { get; set; }
+        public string id_tb_compra_has_tb_produtocol { get; set; }
         public int ds_quantidade { get; set; }
     
         public virtual tb_compra tb_compra { get; set; }
