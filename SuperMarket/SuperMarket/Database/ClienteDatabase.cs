@@ -8,7 +8,7 @@ namespace SuperMarket.Database
 {
     class ClienteDatabase
     {
-        Models.supermarket_dbEntities2 db = new Models.supermarket_dbEntities2();
+        Models.supermarket_dbEntities3 db = new Models.supermarket_dbEntities3();
 
         public void Insert(Models.tb_cliente cliente)
         {

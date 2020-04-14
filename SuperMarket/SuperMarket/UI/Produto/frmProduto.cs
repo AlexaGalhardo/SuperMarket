@@ -16,13 +16,29 @@ namespace SuperMarket.UI.Produto
         {
             InitializeComponent();
         }
-
+        Business.ProdutoBusiness business = new Business.ProdutoBusiness();
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-            Models.tb_produto produto = new Models.tb_produto();
 
-           
         }
-        public void Alterar
+        public void Inserir()
+        {
+            Models.tb_produto produto = new Models.tb_produto();
+            produto.ds_origem = cboOrigem.Text;
+            produto.dt_fabricacao = dtpFabricação.Value;
+            produto.dt_validade = dtpValidade.Value;
+            produto.nm_produto = txtProduto.Text;
+            produto.vl_venda = Convert.ToDouble(txtValorVenda.Text);
+        }
+        int id = 0;
+        public void Alterar(Models.tb_produto produto)
+        {
+            id = produto.idtb_produto;
+            produto.ds_origem = cboOrigem.Text;
+            produto.dt_fabricacao = dtpFabricação.Value;
+            produto.dt_validade = dtpValidade.Value;
+            produto.nm_produto = txtProduto.Text;
+            produto.vl_venda = Convert.ToDouble(txtValorVenda.Text);
+        }
     }
 }
