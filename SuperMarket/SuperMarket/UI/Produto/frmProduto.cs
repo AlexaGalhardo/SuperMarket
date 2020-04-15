@@ -17,28 +17,68 @@ namespace SuperMarket.UI.Produto
             InitializeComponent();
         }
         Business.ProdutoBusiness business = new Business.ProdutoBusiness();
+        Models.tb_produto prodModel = new Models.tb_produto();
         private void btnCadastrar_Click(object sender, EventArgs e)
         {
-
+            if (prodModel != null && prodModel.idtb_produto > 0)
+            {
+                this.Alterar();
+            }
+            else
+            {
+                this.Inserir();
+            }
         }
         public void Inserir()
         {
-            Models.tb_produto produto = new Models.tb_produto();
-            produto.ds_origem = cboOrigem.Text;
-            produto.dt_fabricacao = dtpFabricação.Value;
-            produto.dt_validade = dtpValidade.Value;
-            produto.nm_produto = txtProduto.Text;
-            produto.vl_venda = Convert.ToDouble(txtValorVenda.Text);
+            prodModel = new Models.tb_produto();
+            
+            prodModel.ds_origem = cboOrigem.Text;
+            prodModel.dt_fabricacao = dtpFabricação.Value;
+            prodModel.dt_validade = dtpValidade.Value;
+            prodModel.nm_produto = txtProduto.Text;
+            prodModel.vl_venda = Convert.ToDouble(txtValorVenda.Text);
+            business.InsertProduto(prodModel);
+
+            DialogResult d = MessageBox.Show("Produto cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        int id = 0;
-        public void Alterar(Models.tb_produto produto)
+        
+        public void Alterar()
         {
-            id = produto.idtb_produto;
-            produto.ds_origem = cboOrigem.Text;
-            produto.dt_fabricacao = dtpFabricação.Value;
-            produto.dt_validade = dtpValidade.Value;
-            produto.nm_produto = txtProduto.Text;
-            produto.vl_venda = Convert.ToDouble(txtValorVenda.Text);
+            prodModel.idtb_produto = prodModel.idtb_produto;
+            prodModel.ds_origem = cboOrigem.Text;
+            prodModel.dt_fabricacao = dtpFabricação.Value;
+            prodModel.dt_validade = dtpValidade.Value;
+            prodModel.nm_produto = txtProduto.Text;
+            prodModel.vl_venda = Convert.ToDouble(txtValorVenda.Text);
+
+            business.Alterar(prodModel);
+            DialogResult d = MessageBox.Show("Produto alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
+        public void CarregarTela(Models.tb_produto produto)
+        {
+            prodModel = new Models.tb_produto();
+            double venda = Convert.ToDouble(txtValorVenda.Text);
+
+            txtProduto.Text = produto.nm_produto;
+            venda = produto.vl_venda;
+            cboOrigem.Text = produto.ds_origem;
+            dtpFabricação.Value = produto.dt_fabricacao;
+            dtpValidade.Value = produto.dt_validade;
+            prodModel.idtb_produto = produto.idtb_produto;
+
+            prodModel = produto;
+        }
+        public void LimparCampos()
+        {
+            dtpFabricação.Value = DateTime.Now;
+            dtpValidade.Value = DateTime.Now;
+            txtProduto.Text = string.Empty;
+            txtValorVenda.Text = string.Empty;
+            cboOrigem.Text = "Selecione";
+        }
+
+        
     }
 }

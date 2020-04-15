@@ -14,7 +14,7 @@ namespace SuperMarket.Business
         {
             db.Insert(cliente);
         }
-        public void InsertEndereco(Models.tb_enderecocliente endereco)
+        public void InsertEndereco(Models.tb_enederecocliente endereco)
         {
             db.InsertEndereco(endereco);
         }
@@ -27,7 +27,7 @@ namespace SuperMarket.Business
         {
             db.Alterar(cliente);
         }
-        public void AlterarEndereco(Models.tb_enderecocliente endereco)
+        public void AlterarEndereco(Models.tb_enederecocliente endereco)
         {
             db.AlterarEndereco(endereco);
         }
