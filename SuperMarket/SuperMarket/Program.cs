@@ -16,7 +16,7 @@ namespace SuperMarket
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new UI.Produto.frmProduto());
+            Application.Run(new UI.Produto.frmConsultarProduto());
         }
     }
 }
