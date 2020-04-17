@@ -63,8 +63,7 @@ namespace SuperMarket.UI.Produto
         public void CarregarTela(Models.tb_produto produto)
         {
             prodModel = new Models.tb_produto();
-            //double venda = Convert.ToDouble(txtValorVenda.Text);
-
+           
             txtProduto.Text = produto.nm_produto;
             txtValorVenda.Text = produto.vl_venda.ToString();
             cboOrigem.Text = produto.ds_origem;
