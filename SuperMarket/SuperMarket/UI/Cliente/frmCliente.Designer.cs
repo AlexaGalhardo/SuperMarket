@@ -55,6 +55,8 @@
             this.cboSexo = new System.Windows.Forms.ComboBox();
             this.cboEstado = new System.Windows.Forms.ComboBox();
             this.btnCadastrar = new System.Windows.Forms.Button();
+            this.txtBairro = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label
@@ -89,7 +91,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(38, 125);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 21);
+            this.label1.Size = new System.Drawing.Size(82, 21);
             this.label1.TabIndex = 2;
             this.label1.Text = "CPF/CNPJ:";
             // 
@@ -117,7 +119,7 @@
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(46, 279);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 21);
+            this.label3.Size = new System.Drawing.Size(70, 21);
             this.label3.TabIndex = 10;
             this.label3.Text = "Telefone:";
             // 
@@ -187,7 +189,7 @@
             // 
             // txtNumero
             // 
-            this.txtNumero.Location = new System.Drawing.Point(443, 243);
+            this.txtNumero.Location = new System.Drawing.Point(431, 276);
             this.txtNumero.Multiline = true;
             this.txtNumero.Name = "txtNumero";
             this.txtNumero.Size = new System.Drawing.Size(126, 24);
@@ -197,7 +199,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(405, 243);
+            this.label9.Location = new System.Drawing.Point(393, 276);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(32, 21);
             this.label9.TabIndex = 26;
@@ -205,7 +207,7 @@
             // 
             // txtCidade
             // 
-            this.txtCidade.Location = new System.Drawing.Point(443, 203);
+            this.txtCidade.Location = new System.Drawing.Point(431, 236);
             this.txtCidade.Multiline = true;
             this.txtCidade.Name = "txtCidade";
             this.txtCidade.Size = new System.Drawing.Size(126, 24);
@@ -215,7 +217,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(376, 203);
+            this.label10.Location = new System.Drawing.Point(364, 236);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(61, 21);
             this.label10.TabIndex = 24;
@@ -225,7 +227,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(376, 164);
+            this.label11.Location = new System.Drawing.Point(364, 197);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 21);
             this.label11.TabIndex = 22;
@@ -233,7 +235,7 @@
             // 
             // txtEndereco
             // 
-            this.txtEndereco.Location = new System.Drawing.Point(443, 125);
+            this.txtEndereco.Location = new System.Drawing.Point(431, 158);
             this.txtEndereco.Multiline = true;
             this.txtEndereco.Name = "txtEndereco";
             this.txtEndereco.Size = new System.Drawing.Size(126, 24);
@@ -243,7 +245,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(360, 125);
+            this.label12.Location = new System.Drawing.Point(348, 158);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(77, 21);
             this.label12.TabIndex = 20;
@@ -251,7 +253,7 @@
             // 
             // txtCep
             // 
-            this.txtCep.Location = new System.Drawing.Point(443, 85);
+            this.txtCep.Location = new System.Drawing.Point(431, 85);
             this.txtCep.Multiline = true;
             this.txtCep.Name = "txtCep";
             this.txtCep.Size = new System.Drawing.Size(126, 24);
@@ -261,7 +263,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(397, 85);
+            this.label13.Location = new System.Drawing.Point(385, 85);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(40, 21);
             this.label13.TabIndex = 18;
@@ -289,7 +291,7 @@
             // 
             this.cboEstado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboEstado.FormattingEnabled = true;
-            this.cboEstado.Location = new System.Drawing.Point(443, 165);
+            this.cboEstado.Location = new System.Drawing.Point(431, 198);
             this.cboEstado.Name = "cboEstado";
             this.cboEstado.Size = new System.Drawing.Size(126, 24);
             this.cboEstado.TabIndex = 30;
@@ -302,12 +304,33 @@
             this.btnCadastrar.TabIndex = 31;
             this.btnCadastrar.Text = "Cadastrar";
             this.btnCadastrar.UseVisualStyleBackColor = true;
+            this.btnCadastrar.Click += new System.EventHandler(this.btnCadastrar_Click);
+            // 
+            // txtBairro
+            // 
+            this.txtBairro.Location = new System.Drawing.Point(431, 122);
+            this.txtBairro.Multiline = true;
+            this.txtBairro.Name = "txtBairro";
+            this.txtBairro.Size = new System.Drawing.Size(126, 24);
+            this.txtBairro.TabIndex = 33;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(373, 125);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 21);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Bairro";
             // 
             // frmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(648, 445);
+            this.Controls.Add(this.txtBairro);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.btnCadastrar);
             this.Controls.Add(this.cboEstado);
             this.Controls.Add(this.cboSexo);
@@ -371,5 +394,7 @@
         private System.Windows.Forms.ComboBox cboSexo;
         private System.Windows.Forms.ComboBox cboEstado;
         private System.Windows.Forms.Button btnCadastrar;
+        private System.Windows.Forms.TextBox txtBairro;
+        private System.Windows.Forms.Label label6;
     }
 }

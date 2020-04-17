@@ -33,9 +33,6 @@
             this.txtProduto = new System.Windows.Forms.TextBox();
             this.label = new System.Windows.Forms.Label();
             this.dgvProdutos = new System.Windows.Forms.DataGridView();
-            this.dtpValidade = new System.Windows.Forms.DateTimePicker();
-            this.cboOrigem = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,6 +40,9 @@
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dtpValidade = new System.Windows.Forms.DateTimePicker();
+            this.cboOrigem = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProdutos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +63,7 @@
             this.txtProduto.Name = "txtProduto";
             this.txtProduto.Size = new System.Drawing.Size(126, 24);
             this.txtProduto.TabIndex = 8;
-            this.txtProduto.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtProduto.TextChanged += new System.EventHandler(this.txtProduto_TextChanged);
             // 
             // label
             // 
@@ -98,34 +98,6 @@
             this.dgvProdutos.Size = new System.Drawing.Size(586, 228);
             this.dgvProdutos.TabIndex = 6;
             this.dgvProdutos.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProdutos_CellClick);
-            // 
-            // dtpValidade
-            // 
-            this.dtpValidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpValidade.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpValidade.Location = new System.Drawing.Point(101, 112);
-            this.dtpValidade.Name = "dtpValidade";
-            this.dtpValidade.Size = new System.Drawing.Size(126, 24);
-            this.dtpValidade.TabIndex = 10;
-            // 
-            // cboOrigem
-            // 
-            this.cboOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboOrigem.FormattingEnabled = true;
-            this.cboOrigem.Location = new System.Drawing.Point(399, 74);
-            this.cboOrigem.Name = "cboOrigem";
-            this.cboOrigem.Size = new System.Drawing.Size(126, 24);
-            this.cboOrigem.TabIndex = 31;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(327, 73);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(66, 21);
-            this.label3.TabIndex = 30;
-            this.label3.Text = "Origem:";
             // 
             // Column1
             // 
@@ -174,6 +146,40 @@
             this.Column7.Name = "Column7";
             this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Column7.Width = 25;
+            // 
+            // dtpValidade
+            // 
+            this.dtpValidade.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpValidade.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpValidade.Location = new System.Drawing.Point(101, 112);
+            this.dtpValidade.Name = "dtpValidade";
+            this.dtpValidade.Size = new System.Drawing.Size(126, 24);
+            this.dtpValidade.TabIndex = 10;
+            this.dtpValidade.ValueChanged += new System.EventHandler(this.dtpValidade_ValueChanged);
+            // 
+            // cboOrigem
+            // 
+            this.cboOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboOrigem.FormattingEnabled = true;
+            this.cboOrigem.Items.AddRange(new object[] {
+            "Cereal"});
+            this.cboOrigem.Location = new System.Drawing.Point(399, 74);
+            this.cboOrigem.Name = "cboOrigem";
+            this.cboOrigem.Size = new System.Drawing.Size(126, 24);
+            this.cboOrigem.TabIndex = 31;
+            this.cboOrigem.Text = "Selecione";
+            this.cboOrigem.SelectedIndexChanged += new System.EventHandler(this.cboOrigem_SelectedIndexChanged);
+            this.cboOrigem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboOrigem_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(327, 73);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(66, 21);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Origem:";
             // 
             // frmConsultarProduto
             // 

@@ -65,7 +65,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(178, 116);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(73, 21);
+            this.label1.Size = new System.Drawing.Size(72, 21);
             this.label1.TabIndex = 4;
             this.label1.Text = "Validade:";
             // 
@@ -75,7 +75,7 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(164, 157);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(87, 21);
+            this.label2.Size = new System.Drawing.Size(86, 21);
             this.label2.TabIndex = 6;
             this.label2.Text = "Fabricação:";
             // 
@@ -115,6 +115,8 @@
             this.cboOrigem.Name = "cboOrigem";
             this.cboOrigem.Size = new System.Drawing.Size(126, 24);
             this.cboOrigem.TabIndex = 29;
+            this.cboOrigem.Text = "Selecione";
+            this.cboOrigem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboOrigem_KeyPress);
             // 
             // txtValorVenda
             // 
@@ -130,7 +132,7 @@
             this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(134, 245);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(117, 21);
+            this.label4.Size = new System.Drawing.Size(116, 21);
             this.label4.TabIndex = 30;
             this.label4.Text = "Valor de venda:";
             // 

@@ -15,7 +15,7 @@ namespace SuperMarket.UI.Produto
         public frmConsultarProduto()
         {
             InitializeComponent();
-            CarregarGrid();
+             CarregarGrid();
         }
         Business.ProdutoBusiness business = new Business.ProdutoBusiness();
 
@@ -53,9 +53,38 @@ namespace SuperMarket.UI.Produto
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void txtProduto_TextChanged(object sender, EventArgs e)
         {
+            string nome = txtProduto.Text;
+            List<Models.tb_produto> lista = business.FiltrarPorNome(nome);
 
+            dgvProdutos.AutoGenerateColumns = false;
+            dgvProdutos.DataSource = lista;
         }
+
+        private void cboOrigem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string origem = cboOrigem.Text;
+            List<Models.tb_produto> lista = business.FiltrarPorOrigem(origem);
+
+            dgvProdutos.AutoGenerateColumns = false;
+            dgvProdutos.DataSource = lista;
+        }
+
+        private void dtpValidade_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime data = dtpValidade.Value;
+            List<Models.tb_produto> lista = business.FiltrarPorValidade(data);
+
+            dgvProdutos.AutoGenerateColumns = false;
+            dgvProdutos.DataSource = lista;
+        }
+
+        private void cboOrigem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        
     }
 }

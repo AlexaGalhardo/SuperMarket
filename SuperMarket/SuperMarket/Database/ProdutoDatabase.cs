@@ -27,6 +27,20 @@ namespace SuperMarket.Database
                                                          .ToList();
             return lista;
         }
+        public List<Models.tb_produto> FiltrarPorOrigem(string origem)
+        {
+            List<Models.tb_produto> lista = db.tb_produto.Where(t => t.ds_origem == origem)
+                                                         .OrderBy(t => t.ds_origem)
+                                                         .ToList();
+            return lista;
+        }
+        public List<Models.tb_produto> FiltrarPorValidade(DateTime data)
+        {
+            List<Models.tb_produto> lista = db.tb_produto.Where(t => t.dt_validade == data)
+                                                         .OrderBy(t => t.dt_validade)
+                                                         .ToList();
+            return lista;
+        }
         public void Alterar (Models.tb_produto produto)
         {
             Models.tb_produto alterar = db.tb_produto

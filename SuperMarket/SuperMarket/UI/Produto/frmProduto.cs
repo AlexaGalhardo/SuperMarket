@@ -40,7 +40,10 @@ namespace SuperMarket.UI.Produto
             prodModel.vl_venda = Convert.ToDouble(txtValorVenda.Text);
             business.InsertProduto(prodModel);
 
+            this.LimparCampos();
+
             DialogResult d = MessageBox.Show("Produto cadastrado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
         
         public void Alterar()
@@ -53,6 +56,7 @@ namespace SuperMarket.UI.Produto
             prodModel.vl_venda = Convert.ToDouble(txtValorVenda.Text);
 
             business.Alterar(prodModel);
+            this.LimparCampos();
             DialogResult d = MessageBox.Show("Produto alterado com sucesso.", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
@@ -79,6 +83,9 @@ namespace SuperMarket.UI.Produto
             cboOrigem.Text = "Selecione";
         }
 
-        
+        private void cboOrigem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
