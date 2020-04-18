@@ -86,6 +86,7 @@
     <Compile Include="Database\ClienteDatabase.cs" />
     <Compile Include="Database\CompraDatabase.cs" />
     <Compile Include="Database\CompraProdutoItemDatabase.cs" />
+    <Compile Include="Database\ModelExtended\tb_enederecocliente.cs" />
     <Compile Include="Database\ProdutoDatabase.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
